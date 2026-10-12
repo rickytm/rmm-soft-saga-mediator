@@ -97,6 +97,35 @@ import { createWatcher as baseCreateWatcher } from '@rmm-soft/saga-mediator';
 export const createWatcher = baseCreateWatcher(container);
 ```
 
+**Before** (one generator per use case):
+
+```typescript
+import { all, takeLatest } from 'redux-saga/effects';
+import { container } from 'tsyringe';
+import { executeUseCase, type AsyncAction } from '@rmm-soft/saga-mediator';
+import * as useCase from '@/domain/use-cases/warehouse';
+import { warehouseActions } from '../reducers/warehouseReducer';
+
+function* createWarehouse(action: AsyncAction<CreateWarehouseParams>) {
+	const instance = container.resolve(useCase.CreateWarehouseUseCase);
+	yield executeUseCase(instance, action.payload, action);
+}
+
+function* deleteWarehouse(action: AsyncAction<DeleteWarehouseParams>) {
+	const instance = container.resolve(useCase.DeleteWarehouseUseCase);
+	yield executeUseCase(instance, action.payload, action);
+}
+
+export default function* warehouseSaga() {
+	yield all([
+		takeLatest(warehouseActions.createWarehouse.pending.type, createWarehouse),
+		takeLatest(warehouseActions.deleteWarehouse.pending.type, deleteWarehouse),
+	]);
+}
+```
+
+**After** (`createWatcher` replaces those generators):
+
 ```typescript
 import { all, takeLatest } from 'redux-saga/effects';
 import { createWatcher } from '../utils/sagaUtils';
