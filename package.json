@@ -4,13 +4,34 @@
 	"description": "Lightweight mediator and saga helpers for Clean Architecture in React",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
 	"scripts": {
-		"build": "tsc"
+		"build": "tsc",
+		"prepublishOnly": "npm run build"
 	},
 	"peerDependencies": {
 		"@reduxjs/toolkit": "^2.0.0",
 		"redux-saga": "^1.3.0"
 	},
+	"devDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rickytm/saga-mediator.git"
+	},
+	"keywords": [
+		"mediator",
+		"saga",
+		"redux-saga",
+		"clean-architecture",
+		"react"
+	],
 	"author": "Ricardo Muñoz Matta",
 	"license": "MIT"
 }
