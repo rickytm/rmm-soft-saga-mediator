@@ -1,0 +1,16 @@
+{
+	"name": "@rmm-soft/saga-mediator",
+	"version": "1.0.0",
+	"description": "Lightweight mediator and saga helpers for Clean Architecture in React",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "tsc"
+	},
+	"peerDependencies": {
+		"@reduxjs/toolkit": "^2.0.0",
+		"redux-saga": "^1.3.0"
+	},
+	"author": "Ricardo Muñoz Matta",
+	"license": "MIT"
+}
