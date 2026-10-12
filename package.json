@@ -1,6 +1,6 @@
 {
 	"name": "@rmm-soft/saga-mediator",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Lightweight mediator and saga helpers for Clean Architecture in React",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
