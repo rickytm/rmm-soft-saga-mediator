@@ -125,6 +125,7 @@ The container only needs to satisfy `IoCContainer` (`resolve(target)`), so it wo
 | `dispatchSuccess(type, payload)`  | Saga helper that dispatches the `fulfilled` action for a `_PENDING` type.                    |
 | `dispatchError(type, payload)`    | Saga helper that dispatches the `rejected` action for a `_PENDING` type.                     |
 | `CustomResponseError`             | Normalized error class (`data`, `status`, `statusText`) recognized by the error handling.    |
+| `getErrorMessage(error)`          | Converts any thrown value into a message string; same logic `executeUseCase` uses.          |
 
 ### Types
 
@@ -141,6 +142,18 @@ import { CustomResponseError } from '@rmm-soft/saga-mediator';
 
 throw new CustomResponseError({ message: 'Order not found' }, 404, 'Not Found');
 // rejected payload: 'Order not found'
+```
+
+You can also use the same conversion outside sagas:
+
+```typescript
+import { getErrorMessage } from '@rmm-soft/saga-mediator';
+
+try {
+	await api.get('/orders');
+} catch (error) {
+	const message = getErrorMessage(error);
+}
 ```
 
 ## License
